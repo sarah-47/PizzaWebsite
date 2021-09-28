@@ -1,0 +1,60 @@
+﻿@model IEnumerable<COrder>
+@{
+    ViewData["Title"] = "Confirmation";
+}
+@if (Model != null)
+{
+    <div class="row">
+        <form>
+            <div class="col-lg-4">
+                <br />
+                <div class="jumbotron" style="width:800px;">
+                    <h2 style="color:forestgreen">Your request sent successfully !</h2>
+                    <hr>
+
+
+                    <h3>Your Order</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">UniCost</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="60"><img src="~/imgs/@item.Image" width="50" height="50" /> </td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.UniPrice</td>
+
+
+                                </tr>
+                            }
+                            <tr>
+                                <td></td>
+                                <td colspan="2"><h5>Total</h5></td>
+                                <td >
+                                    <h5> @Model.Sum(x => x.UniPrice * x.Quantity)</h5>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
+}
+else
+{
+    <h1>There is no order</h1>
+    <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Selection">See The Menu</a>
+
+}

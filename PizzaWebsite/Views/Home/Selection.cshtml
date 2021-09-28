@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PizzaList>
+@{
+    ViewData["Title"] = "Selection";
+}
+<h1>Pizza Menu</h1>
+<div class="conatiner">
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+
+
+
+            <div class="card col-lg-4">
+                <div class="card-body">
+
+
+                    <div class="text-center">
+                        <img src="~/imgs/@item.Image" width="200" height="200" />
+                        <h5>@item.Name</h5>
+                        <p>@item.Description</p>
+                        <h5>Price : @item.Price</h5>
+
+                        <input type="button" name="Order" value="Order" class="btn btn-primary" onclick=AddToCart(@item.PizzaID) />
+
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<Script type="text/javascript">
+
+    function AddToCart(item) {
+        var formData = new FormData();
+        formData.append("pizzaID", item);
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: '/Home/Selection',
+           
+        });
+    }
+
+</Script>
