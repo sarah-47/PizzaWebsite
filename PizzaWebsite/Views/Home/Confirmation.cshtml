@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<COrder>
+
 @{
     ViewData["Title"] = "Confirmation";
+
+
 }
-@if (Model != null)
-{
+
     <div class="row">
         <form>
             <div class="col-lg-4">
@@ -39,7 +41,7 @@
                             <tr>
                                 <td></td>
                                 <td colspan="2"><h5>Total</h5></td>
-                                <td >
+                                <td>
                                     <h5> @Model.Sum(x => x.UniPrice * x.Quantity)</h5>
                                 </td>
                             </tr>
@@ -51,10 +53,6 @@
 
         </form>
     </div>
-}
-else
-{
-    <h1>There is no order</h1>
-    <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Selection">See The Menu</a>
 
-}
+
+
